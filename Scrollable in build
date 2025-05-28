@@ -1,0 +1,64 @@
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      body: BackgroundWidget(
+        child: Column(
+          children: [
+            SizedBox(height: 40),
+            _buildHeader(), // Fixed header
+            const SizedBox(height: 10),
+            Expanded(
+              child: ScrollConfiguration(
+                behavior: ScrollConfiguration.of(context).copyWith(
+                  scrollbars: false,
+                  overscroll: false,
+                ),
+                child: SingleChildScrollView(
+                  physics: ClampingScrollPhysics(), // Removes bouncing effect
+                  child: Column(
+                    children: [
+                      Padding(
+                        padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 10),
+                        child: Container(
+                          decoration: BoxDecoration(
+                            borderRadius: BorderRadius.circular(20),
+                            boxShadow: [
+                              BoxShadow(
+                                color: Colors.black.withOpacity(0.3),
+                                blurRadius: 10,
+                                spreadRadius: 2,
+                                offset: Offset(0, 5),
+                              ),
+                            ],
+                          ),
+                          child: ClipRRect(
+                            borderRadius: BorderRadius.circular(20),
+                            child: Container(
+                              height: 220,
+                              width: double.infinity,
+                              decoration: const BoxDecoration(
+                                image: DecorationImage(
+                                  image: AssetImage('assets/images/sss.jpg'),
+                                  fit: BoxFit.cover,
+                                  alignment: Alignment.center,
+                                ),
+                              ),
+                            ),
+                          ),
+                        ),
+                      ),
+                      const SizedBox(height: 10),
+                      _buildClockCards(),
+                      _buildAnnouncementSection(),
+                      const SizedBox(height: 20),
+                      _buildIconNavigationButtons(),
+                    ],
+                  ),
+                ),
+              ),
+            ),
+          ],
+        ),
+      ),
+    );
+  }
